@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crypto-price-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: crypto-price-service
+  template:
+    metadata:
+      labels:
+        app: crypto-price-service
+    spec:
+      containers:
+      - name: crypto-price-service
+        image: getcoins-docker-repo/crypto-price-service:latest
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "200m"
+            memory: "256Mi"
